@@ -1,0 +1,11 @@
+.home-page {
+	width: -webkit-fit-content;
+	width: -moz-fit-content;
+	width: fit-content;
+	margin: auto;
+	text-align: center;
+
+	&__title {
+		font-size: 6rem;
+	}
+}
