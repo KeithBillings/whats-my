@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import WindowSizesRow from "./WindowSizesRow";
 
 export default function WindowSizes() {
 	const [windowHeight, setWindowHeight] = useState("Loading...");
@@ -6,6 +7,9 @@ export default function WindowSizes() {
 	const [windowAvailHeight, setWindowAvailHeight] = useState("Loading...");
 	const [windowAvailWidth, setWindowAvailWidth] = useState("Loading...");
 	const [windowDevicePixelRatio, setWindowDevicePixelRatio] = useState("Loading...");
+	const [windowDevicePixelDepth, setWindowDevicePixelDepth] = useState("Loading...");
+	const [windowColorDepth, setWindowColorDepth] = useState("Loading...");
+	const [windowScreenOrientation, setWindowScreenOrientation] = useState("Loading...");
 
 	function setScreenSizes() {
 		setWindowHeight(window.screen.height);
@@ -13,6 +17,9 @@ export default function WindowSizes() {
 		setWindowAvailHeight(window.screen.availHeight);
 		setWindowAvailWidth(window.screen.availWidth);
 		setWindowDevicePixelRatio(window.devicePixelRatio);
+		setWindowDevicePixelDepth(window.screen.pixelDepth);
+		setWindowColorDepth(window.screen.colorDepth);
+		setWindowScreenOrientation(window.screen.orientation.type);
 	}
 
 	useEffect(() => {
@@ -25,36 +32,14 @@ export default function WindowSizes() {
 
 	return (
 		<div className="window-sizes">
-			<div className="window-sizes__row">
-				<p className="align-left">
-					<code>window.screen.height</code>:
-				</p>
-				<p className="align-right">{windowHeight}</p>
-			</div>
-			<div className="window-sizes__row">
-				<p className="align-left">
-					<code>window.screen.width</code>:
-				</p>
-				<p className="align-right">{windowWidth}</p>
-			</div>
-			<div className="window-sizes__row">
-				<p className="align-left">
-					<code>window.screen.availHeight</code>:
-				</p>
-				<p className="align-right">{windowAvailHeight}</p>
-			</div>
-			<div className="window-sizes__row">
-				<p className="align-left">
-					<code>window.screen.availWidth</code>:
-				</p>
-				<p className="align-right">{windowAvailWidth}</p>
-			</div>
-			<div className="window-sizes__row">
-				<p className="align-left">
-					<code>window.devicePixelRatio</code>:
-				</p>
-				<p className="align-right">{windowDevicePixelRatio}</p>
-			</div>
+			<WindowSizesRow name={"window.screen.height"} value={windowHeight} />
+			<WindowSizesRow name={"window.screen.width"} value={windowWidth} />
+			<WindowSizesRow name={"window.screen.availHeight"} value={windowAvailHeight} />
+			<WindowSizesRow name={"window.screen.availWidth"} value={windowAvailWidth} />
+			<WindowSizesRow name={"window.devicePixelRatio"} value={windowDevicePixelRatio} />
+			<WindowSizesRow name={"window.screen.pixelDepth"} value={windowDevicePixelDepth} />
+			<WindowSizesRow name={"window.screen.colorDepth"} value={windowColorDepth} />
+			<WindowSizesRow name={"window.screen.orientation.type"} value={windowScreenOrientation} />
 		</div>
 	);
 }
