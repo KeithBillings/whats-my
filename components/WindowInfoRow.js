@@ -1,6 +1,6 @@
-export default function WindowSizesRow({ name, value }) {
+export default function WindowInfoRow({ name, value }) {
 	return (
-		<div className="window-sizes__row">
+		<div className="window-info__row">
 			<p className="align-left">
 				<code>{name}</code>:
 			</p>

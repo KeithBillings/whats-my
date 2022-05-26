@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import WindowSizesRow from "./WindowSizesRow";
+import WindowInfoRow from "./WindowInfoRow";
 
-export default function WindowSizes() {
+export default function WindowInfo() {
 	const [windowHeight, setWindowHeight] = useState("Loading...");
 	const [windowWidth, setWindowWidth] = useState("Loading...");
 	const [windowAvailHeight, setWindowAvailHeight] = useState("Loading...");
@@ -11,7 +11,7 @@ export default function WindowSizes() {
 	const [windowColorDepth, setWindowColorDepth] = useState("Loading...");
 	const [windowScreenOrientation, setWindowScreenOrientation] = useState("Loading...");
 
-	function setScreenSizes() {
+	function setScreenInfo() {
 		setWindowHeight(window.screen.height);
 		setWindowWidth(window.screen.width);
 		setWindowAvailHeight(window.screen.availHeight);
@@ -23,23 +23,23 @@ export default function WindowSizes() {
 	}
 
 	useEffect(() => {
-		setScreenSizes();
+		setScreenInfo();
 
 		window.addEventListener("resize", () => {
-			setScreenSizes();
+			setScreenInfo();
 		});
 	}, []);
 
 	return (
-		<div className="window-sizes">
-			<WindowSizesRow name={"window.screen.height"} value={windowHeight} />
-			<WindowSizesRow name={"window.screen.width"} value={windowWidth} />
-			<WindowSizesRow name={"window.screen.availHeight"} value={windowAvailHeight} />
-			<WindowSizesRow name={"window.screen.availWidth"} value={windowAvailWidth} />
-			<WindowSizesRow name={"window.devicePixelRatio"} value={windowDevicePixelRatio} />
-			<WindowSizesRow name={"window.screen.pixelDepth"} value={windowDevicePixelDepth} />
-			<WindowSizesRow name={"window.screen.colorDepth"} value={windowColorDepth} />
-			<WindowSizesRow name={"window.screen.orientation.type"} value={windowScreenOrientation} />
+		<div className="window-info">
+			<WindowInfoRow name={"window.screen.height"} value={windowHeight} />
+			<WindowInfoRow name={"window.screen.width"} value={windowWidth} />
+			<WindowInfoRow name={"window.screen.availHeight"} value={windowAvailHeight} />
+			<WindowInfoRow name={"window.screen.availWidth"} value={windowAvailWidth} />
+			<WindowInfoRow name={"window.devicePixelRatio"} value={windowDevicePixelRatio} />
+			<WindowInfoRow name={"window.screen.pixelDepth"} value={windowDevicePixelDepth} />
+			<WindowInfoRow name={"window.screen.colorDepth"} value={windowColorDepth} />
+			<WindowInfoRow name={"window.screen.orientation.type"} value={windowScreenOrientation} />
 		</div>
 	);
 }
