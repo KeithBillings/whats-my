@@ -1,6 +1,9 @@
 .external-links {
 	font-size: 1.6rem;
 	margin-top: 10rem;
+	width: -webkit-fit-content;
+	width: -moz-fit-content;
+	width: fit-content;
 
 	display: grid;
 	grid-template-columns: repeat(1, 1fr);
