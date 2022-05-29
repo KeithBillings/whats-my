@@ -58,7 +58,7 @@ export default function WindowInfo() {
 				<WindowInfoRow name={"window.devicePixelRatio"} value={windowDevicePixelRatio} />
 				<WindowInfoRow name={"window.screen.pixelDepth"} value={windowDevicePixelDepth} />
 				<WindowInfoRow name={"window.screen.colorDepth"} value={windowColorDepth} />
-				<WindowInfoRow name={"window.screen.orientation.type"} value={windowScreenOrientation} />
+				{/* <WindowInfoRow name={"window.screen.orientation.type"} value={windowScreenOrientation} /> */}
 			</section>
 
 			<section>
