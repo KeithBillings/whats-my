@@ -17,6 +17,11 @@ html {
 	font-size: 62.5%; //1 rem = 10px
 }
 
+body {
+	min-height: 100vh;
+	min-width: 100vw;
+}
+
 // abstracts
 @import "abstracts/animations";
 @import "abstracts/mixins";
