@@ -21,8 +21,8 @@ export default function ExternalLinks() {
 				</a>
 			</p>
 			<p>
-				<a href="https://cash.app/$CowboyKeithBop">
-					Buy me a cup of coffee ☕️
+				<a className="donate" href="https://cash.app/$CowboyKeithBop" target="_blank" rel="noreferrer">
+					Buy me a cup of coffee <span className="coffee-mug">☕️</span>
 				</a>
 			</p>
 		</div>

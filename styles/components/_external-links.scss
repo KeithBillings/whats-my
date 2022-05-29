@@ -13,4 +13,17 @@
 			text-shadow: 0 0 2px $black-1;
 		}
 	}
+
+	.donate {
+		:hover {
+			.coffee-mug {
+				transform: translate(0.5rem, -0.5rem);
+			}
+		}
+
+		.coffee-mug {
+			display: inline-block;
+			transition: 0.5s;
+		}
+	}
 }
