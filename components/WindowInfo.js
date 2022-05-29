@@ -24,7 +24,13 @@ export default function WindowInfo() {
 		setWindowDevicePixelRatio(window.devicePixelRatio);
 		setWindowDevicePixelDepth(window.screen.pixelDepth);
 		setWindowColorDepth(window.screen.colorDepth);
-		setWindowScreenOrientation(window.screen.orientation.type);
+
+		const orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
+		if (orientation) {
+			setWindowScreenOrientation(window.screen.orientation.type);
+		} else {
+			setWindowScreenOrientation("The orientation API isn't supported in this browser.");
+		}
 
 		setScrollHeight(document.querySelector("body").scrollHeight);
 		setScrollWidth(document.querySelector("body").scrollWidth);
@@ -33,9 +39,7 @@ export default function WindowInfo() {
 	}
 
 	useEffect(() => {
-		window.addEventListener("load", () => {
-			setScreenInfo();
-		});
+		setScreenInfo();
 
 		window.addEventListener("resize", () => {
 			setScreenInfo();
