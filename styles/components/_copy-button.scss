@@ -1,0 +1,15 @@
+.copy-button {
+	position: absolute;
+	top: 2rem;
+	right: 2rem;
+
+	font-size: 1.4rem;
+	background-color: $grey-2;
+	padding: 0.5rem;
+	border-radius: 0.4rem;
+	border: 0.1rem solid $grey-7;
+
+	&:hover {
+		cursor: pointer;
+	}
+}

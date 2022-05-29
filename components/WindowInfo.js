@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import WindowInfoRow from "./WindowInfoRow";
 
-export default function WindowInfo() {
+export default function WindowInfo({ setWhatsMyData }) {
 	const [windowHeight, setWindowHeight] = useState("Loading...");
 	const [windowWidth, setWindowWidth] = useState("Loading...");
 	const [windowAvailHeight, setWindowAvailHeight] = useState("Loading...");
@@ -9,7 +9,7 @@ export default function WindowInfo() {
 	const [windowDevicePixelRatio, setWindowDevicePixelRatio] = useState("Loading...");
 	const [windowDevicePixelDepth, setWindowDevicePixelDepth] = useState("Loading...");
 	const [windowColorDepth, setWindowColorDepth] = useState("Loading...");
-	const [windowScreenOrientation, setWindowScreenOrientation] = useState("Loading...");
+	// const [windowScreenOrientation, setWindowScreenOrientation] = useState("Loading...");
 
 	const [scrollHeight, setScrollHeight] = useState("Loading...");
 	const [scrollWidth, setScrollWidth] = useState("Loading...");
@@ -25,12 +25,12 @@ export default function WindowInfo() {
 		setWindowDevicePixelDepth(window.screen.pixelDepth);
 		setWindowColorDepth(window.screen.colorDepth);
 
-		const orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
-		if (orientation) {
-			setWindowScreenOrientation(window.screen.orientation.type);
-		} else {
-			setWindowScreenOrientation("The orientation API isn't supported in this browser.");
-		}
+		// const orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
+		// if (orientation) {
+		// 	setWindowScreenOrientation(window.screen.orientation.type);
+		// } else {
+		// 	setWindowScreenOrientation("The orientation API isn't supported in this browser.");
+		// }
 
 		setScrollHeight(document.querySelector("body").scrollHeight);
 		setScrollWidth(document.querySelector("body").scrollWidth);
@@ -45,6 +45,24 @@ export default function WindowInfo() {
 			setScreenInfo();
 		});
 	}, []);
+
+	useEffect(() => {
+		const data = {
+			windowHeight,
+			windowWidth,
+			windowAvailHeight,
+			windowAvailWidth,
+			windowDevicePixelRatio,
+			windowDevicePixelDepth,
+			windowColorDepth,
+			scrollHeight,
+			scrollWidth,
+			clientHeight,
+			clientWidth,
+		};
+
+		setWhatsMyData(data);
+	}, [clientHeight, clientWidth, scrollHeight, scrollWidth, setWhatsMyData, windowAvailHeight, windowAvailWidth, windowColorDepth, windowDevicePixelDepth, windowDevicePixelRatio, windowHeight, windowWidth]);
 
 	return (
 		<div className="window-info">
