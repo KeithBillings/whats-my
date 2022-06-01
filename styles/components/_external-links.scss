@@ -19,6 +19,12 @@
 		}
 	}
 
+	p {
+		@include mobile() {
+			font-weight: 300;
+		}
+	}
+
 	.donate {
 		:hover {
 			.coffee-mug {
