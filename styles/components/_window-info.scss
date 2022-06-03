@@ -25,4 +25,16 @@
 		grid-template-columns: repeat(2, 1fr);
 		padding: 0 4rem;
 	}
+
+	.ip-address {
+		filter: blur(0.5rem);
+		-webkit-filter: blur(0.5rem);
+
+		transition: 0.2s;
+
+		&:hover {
+			filter: blur(0rem);
+			-webkit-filter: blur(0rem);
+		}
+	}
 }

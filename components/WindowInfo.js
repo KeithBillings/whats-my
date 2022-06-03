@@ -9,6 +9,9 @@ export default function WindowInfo({ setWhatsMyData }) {
 	// Have to set as "Loading..." initially because otherwise there is no "window" element as this is server rendered.
 	// Note: Careful when naming these states, make sure they correspond with the actual object they are reading from as it will affect the search results when reading the key names in the data JSON
 
+	// IP Address
+	const [userIPAddress, setUserIPAddress] = useState("Loading...");
+
 	// Window data
 	const [windowScreenHeight, setWindowScreenHeight] = useState("Loading...");
 	const [windowScreenWidth, setWindowScreenWidth] = useState("Loading...");
@@ -23,6 +26,13 @@ export default function WindowInfo({ setWhatsMyData }) {
 	const [bodyScrollWidth, setBodyScrollWidth] = useState("Loading...");
 	const [bodyClientHeight, setBodyClientHeight] = useState("Loading...");
 	const [bodyClientWidth, setBodyClientWidth] = useState("Loading...");
+
+	// Send a fetch request to a server api that returns ip address
+	function fetchUserIPAddress() {
+		fetch("https://api.ipify.org/?format=json")
+			.then((res) => res.json())
+			.then((data) => setUserIPAddress(data.ip));
+	}
 
 	// Set Screen Info
 	function setScreenInfo() {
@@ -42,6 +52,7 @@ export default function WindowInfo({ setWhatsMyData }) {
 
 	// Set all the window info values on page load then create a listener on window resize to fetch new values
 	useEffect(() => {
+		fetchUserIPAddress();
 		setScreenInfo();
 
 		window.addEventListener("resize", () => {
@@ -53,6 +64,7 @@ export default function WindowInfo({ setWhatsMyData }) {
 	useEffect(() => {
 		// Compile all the current data
 		const data = {
+			userIPAddress,
 			windowScreenHeight,
 			windowScreenWidth,
 			windowScreenAvailHeight,
@@ -78,11 +90,8 @@ export default function WindowInfo({ setWhatsMyData }) {
 
 		setWhatsMyData(filteredData);
 	}, [
-		bodyClientHeight,
-		bodyClientWidth,
-		bodyScrollHeight,
-		bodyScrollWidth,
-		setWhatsMyData,
+		searchQuery,
+		userIPAddress,
 		windowScreenAvailHeight,
 		windowScreenAvailWidth,
 		windowScreenColorDepth,
@@ -90,21 +99,28 @@ export default function WindowInfo({ setWhatsMyData }) {
 		windowDevicePixelRatio,
 		windowScreenHeight,
 		windowScreenWidth,
-		searchQuery,
+		bodyClientHeight,
+		bodyClientWidth,
+		bodyScrollHeight,
+		bodyScrollWidth,
+		setWhatsMyData,
 	]);
 
 	// --- Hiding Sections if they don't have search results --- //
 	// Target all sections
+	const ipAddressSection = useRef(null);
 	const windowSection = useRef(null);
 	const bodySection = useRef(null);
 
 	// On search, check to see if the sections have 1 child or less
 	useEffect(() => {
-		const sections = [windowSection.current, bodySection.current];
+		// Make array of all the sections we can search in
+		const sections = [ipAddressSection.current, windowSection.current, bodySection.current];
 
+		// Iterate over each one to check child count
 		sections.map((section) => {
-			// If the section has 1 or less children, add a hide class
-			// The 1 child is the tile that is always in the section
+			// If the section has 1 or less children, add a hide class to section
+			// Note: The 1 permanent child is the section title. That's why we are not checking for 0.
 			if (section.childElementCount <= 1) {
 				section.classList.add("hide-element");
 			} else {
@@ -115,6 +131,11 @@ export default function WindowInfo({ setWhatsMyData }) {
 
 	return (
 		<div className="window-info">
+			<section ref={ipAddressSection}>
+				<h3 className="window-info__section-title">IP Address</h3>
+				{"ip address".includes(searchQuery) ? <p className="ip-address">{userIPAddress}</p> : ""}
+			</section>
+
 			<section ref={windowSection}>
 				<h3 className="window-info__section-title">Window</h3>
 				<WindowInfoRow name={"window.screen.height"} value={windowScreenHeight} />
