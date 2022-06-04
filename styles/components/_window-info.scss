@@ -27,6 +27,11 @@
 	}
 
 	.ip-address {
+		width: -webkit-fit-content;
+		width: -moz-fit-content;
+		width: fit-content;
+		margin: auto;
+
 		filter: blur(0.5rem);
 		-webkit-filter: blur(0.5rem);
 
@@ -35,6 +40,49 @@
 		&:hover {
 			filter: blur(0rem);
 			-webkit-filter: blur(0rem);
+		}
+	}
+
+	code {
+		position: relative;
+		transition: all 0.2s;
+
+		&:hover {
+			background-color: $grey-4;
+		}
+	}
+
+	.tooltip {
+		background-color: $light-grey-10;
+		position: absolute;
+		left: 0;
+		bottom: 3.5rem;
+		font-size: 1.4rem;
+		padding: 1rem;
+		text-align: center;
+		border-radius: 0.4rem;
+		pointer-events: none;
+
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		gap: 1rem;
+
+		-webkit-animation: fade-in 0.3s forwards;
+		animation: fade-in 0.3s forwards;
+
+		&__title {
+			font-weight: 400;
+			width: -webkit-fit-content;
+			width: -moz-fit-content;
+			width: fit-content;
+			margin: auto;
+		}
+
+		&__description {
+		}
+
+		&__learn-more {
+			font-size: 1.2rem;
 		}
 	}
 }

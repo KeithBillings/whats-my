@@ -9,8 +9,10 @@
 	border: 0.1rem solid $grey-7;
 	transition: all 0.3s;
 	margin: 2rem auto;
+	transition: .3s;
 
 	&:hover {
 		cursor: pointer;
+		background-color: $grey-4;
 	}
 }
