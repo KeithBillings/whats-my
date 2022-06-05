@@ -27,23 +27,24 @@ body {
 	position: relative;
 }
 
-// abstracts
+// --- Imports --- //
+// Abstracts
 @import "abstracts/animations";
 @import "abstracts/mixins";
 @import "abstracts/variables";
 
-// base
+// Base
 @import "base/utility";
 @import "base/typography";
 
-// components
+// Components
 @import "components/copy-button";
 @import "components/external-links";
 @import "components/search-bar";
 @import "components/window-info";
 
-// layout
+// Layout
 // @import "layout/layout";
 
-// pages
+// Pages
 @import "pages/home";

@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+// Renders a simple footer with external links like finding screen resolution, checking internet speed, or a donate button.
 export default function ExternalLinks() {
 	return (
 		<div className="external-links">

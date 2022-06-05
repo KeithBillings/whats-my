@@ -1,7 +1,9 @@
 import { useContext, useState, useEffect, useRef } from "react";
 
+// Data
 import { SearchQueryContext } from "../pages/_app";
 
+// Renders each row of data fed to it by <WindowInfo />. Contains data, tooltips, and links.
 export default function WindowInfoRow({ value, name, tooltip, link }) {
 	const { searchQuery } = useContext(SearchQueryContext);
 
@@ -10,9 +12,9 @@ export default function WindowInfoRow({ value, name, tooltip, link }) {
 	const windowInfoRow = useRef(null);
 	const codeText = useRef(null);
 
+	// On page load, add a listner to the code block section that will wait for a mouseover.
+	// That mouseover will start a timer to display the tooltip
 	useEffect(() => {
-		// On page load, add a listner to the code block section that will wait for a mouseover.
-		// That mouseover will start a timer to display the tooltip
 		const TOOLTIP_DELAY = 1000;
 		let beginShowTooltipTimeout;
 
